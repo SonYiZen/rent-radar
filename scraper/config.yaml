@@ -1,0 +1,64 @@
+# 租屋雷達設定檔
+price:
+  min: 12000
+  max: 18500
+
+# 591 的 region/section 代碼（2026-10 實測）
+districts:
+  - { name: 土城, city: 新北市, region: 3, section: 39 }
+  - { name: 三峽, city: 新北市, region: 3, section: 40 }
+  - { name: 樹林, city: 新北市, region: 3, section: 41 }
+  - { name: 鶯歌, city: 新北市, region: 3, section: 42 }
+  - { name: 林口, city: 新北市, region: 3, section: 46 }
+  - { name: 桃園, city: 桃園市, region: 6, section: 73 }
+  - { name: 龜山, city: 桃園市, region: 6, section: 74 }
+  - { name: 八德, city: 桃園市, region: 6, section: 75 }
+  - { name: 大園, city: 桃園市, region: 6, section: 78 }
+  - { name: 蘆竹, city: 桃園市, region: 6, section: 79 }
+  # 中和只收靠近板橋的：距板新站 2 公里內（中原站、環球、員山路一帶）。座標還不精確的先隱藏。
+  - {
+      name: 中和,
+      city: 新北市,
+      region: 3,
+      section: 38,
+      near: { label: 板橋, points: [[25.014491, 121.472212]], max_km: 2.0 },
+    }
+
+rent591:
+  kinds: [1, 2] # 1 整層住家、2 獨立套房
+  pages: 2 # 每組查詢抓幾頁（每頁 30 筆，依刊登時間新→舊）
+  detail_per_run: 20 # 每次執行最多抓幾筆 detail（取座標與刊登時間）
+  delay: [2, 5] # 請求間隔秒數（隨機）
+
+ptt:
+  boards: [Rent_apart, Rent_tao]
+  pages: 3
+
+fb_mail:
+  host: imap.gmail.com
+  lookback_hours: 48
+  mark_seen: true
+
+subsidy_keywords:
+  - 租金補貼
+  - 可租補
+  - 租補
+  - 租屋補助
+  - 可申請補助
+  - 可申請補貼
+  - 可報稅
+  - 可遷戶籍
+  - 可入籍
+  - 社會住宅
+
+exclude_keywords: # 標題含這些就跳過（PTT / FB）
+  - 徵
+  - 求租
+  - 已出租
+  - 已租出
+  - 已租
+  - 代租
+  - 車位出租
+
+keep_days: 30
+geocode_per_run: 25
